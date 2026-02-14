@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <link rel="stylesheet" href="index.css">
+    <title>For Omi</title>
+</head>
+<body>
+    <script>
+        var i = 1;
+        var texts = [];
+        var time = 4500;
+        var intervalId;
+
+        texts[0] = "Before I ask you something special...";
+        texts[1] = "I just want to tell you how much I love you HEHE. ";
+        texts[2] = "Thank you for being my bestfriend — through every high and every low, through the good days and the hard ones.";
+        texts[3] = "Thank you for supporting me in everything I do and in every goal I try to achieve. That means so much to me baby.";
+        texts[4] = "I don’t say it enough, but I am so grateful for you bebe ko!";
+        texts[5] = "You deserve the world. And even if I’m still growing and still working on becoming the best version of myself...";
+        texts[6] = "please know I’m doing it with you in mind.";
+        texts[7] = "I’m doing my best to build a life where you feel secure, loved, and proud of the man standing beside you.";
+        texts[8] = "Can’t get enough of you bebe! You the best gf FR 😁❤️";
+        texts[9] = "Will you be my Valentine?"; 
+
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+
+        function changeText() {
+            document.getElementsByClassName("slideText")[0].classList.remove("animate__fadeIn");
+            document.getElementsByClassName("slideText")[0].classList.add("animate__fadeOut");
+            
+            setTimeout(function() {
+                document.getElementsByClassName("slideText")[0].innerHTML = texts[i];
+                document.getElementsByClassName("slideText")[0].classList.remove("animate__fadeOut");
+                document.getElementsByClassName("slideText")[0].classList.add("animate__fadeIn");
+                
+                // Stop the slideshow if we reached the last text
+                if (i >= texts.length - 1) {
+                    clearInterval(intervalId);
+                    // Show the buttons after a short delay
+                    setTimeout(function() {
+                        document.getElementById("buttonContainer").style.display = "flex";
+                        document.getElementById("buttonContainer").classList.add("animate__fadeIn");
+                        // Add shake animation to Yes button
+                        document.getElementById("yesBtn").classList.add("animate__shakeY", "animate__infinite");
+                        
+                        // Add event listener to Yes button
+                        var yesBtn = document.getElementById("yesBtn");
+                        yesBtn.addEventListener("click", function() {
+                            // Hide buttons and slide text
+                            document.getElementById("buttonContainer").style.display = "none";
+                            document.getElementsByClassName("slideText")[0].style.display = "none";
+                            
+                            // Show reaction area with happy response
+                            var reactionArea = document.getElementById("reactionArea");
+                            var reactionGif = document.getElementById("reactionGif");
+                            var reactionText = document.getElementById("reactionText");
+                            
+                            reactionGif.src = "https://media.tenor.com/DpJdyKQKgYkAAAAi/cat-jump.gif";
+                            reactionText.innerHTML = "Thank you for choosing me, for staying with me, and for loving me through everything bebe!<br><br>I love you so much MWAH<br><br>Happy Valentine’s! 💋❤️";
+                            
+                            reactionArea.style.display = "flex";
+                            reactionArea.classList.add("animate__fadeIn", "animate__heartBeat");
+                        });
+                        
+                        // Add event listener to No button to increase Yes button size
+                        var noBtn = document.getElementById("noBtn");
+                        noBtn.addEventListener("click", function() {
+                            var yesBtn = document.getElementById("yesBtn");
+                            var currentWidth = yesBtn.offsetWidth;
+                            var currentHeight = yesBtn.offsetHeight;
+                            var currentFontSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+                            yesBtn.style.width = (currentWidth + 20) + "px";
+                            yesBtn.style.height = (currentHeight + 10) + "px";
+                            yesBtn.style.fontSize = (currentFontSize + 2) + "px";
+                            
+                            // Add shake animation to Yes button
+                            yesBtn.classList.remove("animate__shakeY");
+                            setTimeout(function() {
+                                yesBtn.classList.add("animate__shakeY");
+                            }, 10);
+
+                            // Apply fixed positioning for random placement
+                            noBtn.style.position = "fixed";
+                            
+                            var winWidth = window.innerWidth;
+                            var winHeight = window.innerHeight;
+
+                            randomTop = getRandomNumber(0,winHeight);
+                            randomLeft = getRandomNumber(0,winWidth);
+                            noBtn.style.top = randomTop + "px";
+                            noBtn.style.left = randomLeft + "px";
+                        });
+                    }, 1000);
+                } 
+                i++;
+            }, 500);
+        }
+
+        window.onload = function() {
+            document.getElementsByClassName("slideText")[0].innerHTML = texts[0];
+            document.getElementsByClassName("slideText")[0].classList.add("animate__fadeIn");
+            intervalId = setInterval(changeText, time);
+        }
+    </script>
+
+    <div class="slideText animate__animated" name="slideText"></div>
+
+    <div id="reactionArea" class="reaction-area animate__animated" style="display: none;">
+        <img id="reactionGif" class="reaction-gif" src="" alt="Reaction">
+        <p id="reactionText" class="reaction-text"></p>
+    </div>
+
+    <div id="buttonContainer" class="button-container animate__animated" style="display: none; gap:30px;">
+        <button id="yesBtn" class="response-btn yes-btn animate__animated">Yes</button>
+        <button id="noBtn" class="response-btn no-btn">No</button>
+    </div>
+
+</body>
+</html>

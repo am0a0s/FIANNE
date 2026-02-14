@@ -34,6 +34,7 @@ h1 {
     max-width: 800px;
     line-height: 1.6;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), 0 0 10px rgba(0, 0, 0, 0.5);
+    -webkit-text-stroke: 1.5px #000000;
 }
 
 .button-container {
@@ -53,6 +54,7 @@ h1 {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    -webkit-text-stroke: 0.8px #000000;
 }
 
 .yes-btn {
@@ -99,6 +101,7 @@ h1 {
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), 0 0 10px rgba(0, 0, 0, 0.5);
     max-width: 600px;
     line-height: 1.6;
+    -webkit-text-stroke: 1.5px #000000;
 }
 
 /* Mobile devices (portrait phones, less than 576px) */

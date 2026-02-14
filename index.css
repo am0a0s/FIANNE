@@ -1,5 +1,5 @@
 /* Import Great Vibes font */
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
 
 /* Base styles for all devices */
 * {
@@ -9,7 +9,7 @@
 }
 
 body {
-    font-family: 'Great Vibes', cursive, sans-serif;
+    font-family: 'Comfortaa', cursive, sans-serif;
     padding: 20px;
     overflow-x: hidden;
     display: flex;
